@@ -11,8 +11,9 @@ import { PrivateTasksComponent } from './components/private-tasks/private-tasks.
 //importaciones del usuario
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 // Services
@@ -33,7 +34,13 @@ import { AuthGuard } from './auth.guard';
   ],
   providers: [
     AuthService,
-    AuthGuard 
+    AuthGuard,
+    //este es para añadir un nuevo header a nuestro inicio de sesion con el token
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    } 
   ],
   bootstrap: [AppComponent]
 })
