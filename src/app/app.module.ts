@@ -3,16 +3,38 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
+
+//importaciones del usuario
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+
+
+// Services
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    SigninComponent,
+    TasksComponent,
+    PrivateTasksComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
