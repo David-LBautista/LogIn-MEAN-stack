@@ -89,13 +89,6 @@ router.get('/private-tasks', verifyToken, (req,res) => {
 });
 
 
-
-
-
-
-
-
-
 //funcion de validacion del token
 function verifyToken( req, res, next) {
 
@@ -109,7 +102,7 @@ function verifyToken( req, res, next) {
     if(token === null){
         return res.status(401).send("Unauthorized request");
     }
-
+    
     const payload = jwt.verify(token, 'secretkey');
     console.log(payload);
 
